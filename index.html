@@ -115,7 +115,7 @@ fetch(`https://api.github.com/repos/${owner}/${repo}/contents/`)
   const gallery = document.getElementById("gallery");
 
   files
-    .filter(file => file.type === "file" && file.name.toLowerCase().endsWith(".gif"))
+   .filter(file => file.type === "file" && /\.(gif|jpe?g|png|webp)$/i.test(file.name))
     .forEach(file => {
 
       const card = document.createElement("div");
@@ -127,7 +127,7 @@ fetch(`https://api.github.com/repos/${owner}/${repo}/contents/`)
 
       const title = document.createElement("h3");
       title.textContent = file.name
-        .replace(".gif","")
+        .replace(/\.(gif|jpe?g|png|webp)$/i, "")
         .replace(/[_-]+/g," ");
 
       card.appendChild(img);
